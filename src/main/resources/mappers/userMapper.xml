@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.godressup.persistence.UserMapper">
+	<!-- useGeneratedKeys="true": MyBatis에게 DB가 자동 생성한 키(id)를 사용하겠다 라고 알려주는 옵션
+	(DB는 자동으로 id 값을 만들어낸 후, 생성된 값을 Java 객체에 넣어주지 않지만 설정 시 Java 객체에 넣어줌) -->
+	<!-- keyProperty="id": 자동 생성된 키를 담을 자바 객체 속성 이름을 지정(id 필드에 값을 넣어줌) -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO user(username, password, email) VALUES(#{username}, #{password}, #{email})
+	</insert>
+	
+	<select id="selectById" resultType="com.godressup.domain.UserVO">
+		SELECT * FROM user WHERE username=#{username}
+	</select>
+	
+	<select id="selectAll" resultType="com.godressup.domain.UserVO">
+		<![CDATA[
+			SELECT * FROM user
+		]]>
+	</select>
+	
+	<update id="update">
+		UPDATE user SET username=#{username}, password=#{password}, email=#{email} WHERE username=#{username}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM user WHERE username=#{username}
+	</delete>
+</mapper>

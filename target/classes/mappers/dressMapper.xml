@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.godressup.persistence.DressMapper">
+	<insert id="insert">
+		INSERT INTO dress(name, price, size, color, image_url) VALUES(#{name}, #{price}, #{size}, #{color}, #{image_url})
+	</insert>
+	
+	<select id="selectById" resultType="com.godressup.domain.DressVO">
+		SELECT * FROM dress WHERE id=#{id}
+	</select>
+	
+	<select id="selectAll" resultType="com.godressup.domain.DressVO">
+		<![CDATA[
+			SELECT * FROM dress
+		]]>
+	</select>
+	
+	<update id="update">
+		UPDATE dress SET name=#{name}, price=#{price}, size=#{size}, color=#{color}, image_url=#{image_url} WHERE id=#{id}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM dress WHERE id=#{id}
+	</delete>
+</mapper>
